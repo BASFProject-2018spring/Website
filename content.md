@@ -11,9 +11,10 @@ Nematodes have different efficacies at different stages of their life cycles. Au
 ## Description of Data and EDA
 BASF does not have a digital way to label the nematodes in the microscope images. Initially, we only have some sample microscope images and a slide briefing the characteristics of each life stage of nematodes.
 
-We implemented a labeling tool and delivered it to them. After that, we continuously received data from BASF. Finally, we have 406 valid labeledmicroscopy images, with unbalanced distribution as shown below.
+We implemented a labeling tool and delivered it to them. After that, we continuously received data from BASF. Finally, we have 406 valid labeled
+microscopy images, with unbalanced distribution as shown below.
 
-<img src='img/nematode_distribution.png' style='width: 200px;'>
+<img src='img/nematode_distribution.png' width='200'>
 
 
 
