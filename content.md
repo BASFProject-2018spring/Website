@@ -140,7 +140,7 @@ We recieved 4 batches of data, which contained 406 labeled images in total. We t
 
 The classification results are summarized below (AUC/accuracy is evaluated by matching each box predicted to each box labeled and ignoring those don’t match):
 
- | AUC | Accuracy
+Model | AUC | Accuracy
 --- | --- | ---
 SVM | 0.66 | 0.75
 Random Forest | 0.69 | 0.75
@@ -149,7 +149,7 @@ Faster R-CNN (res152) | 0.82 | 0.74
 
 The bounding box detection error for SA-R_CNN is summarized below:
 
- | Actual label | No Actual Label
+ - | Actual label | No Actual Label
 --- | --- | ---
 Predicted Label | 42 | 78 (only 1 infective)
 No Predicted Label | 0 | N/A
