@@ -149,7 +149,7 @@ Faster R-CNN (res152) | 0.82 | 0.74
 
 The bounding box detection error for SA-R_CNN is summarized below:
 
- - | Actual label | No Actual Label
+ \ | Actual label | No Actual Label
 --- | --- | ---
 Predicted Label | 42 | 78 (only 1 infective)
 No Predicted Label | 0 | N/A
