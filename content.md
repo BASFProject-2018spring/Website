@@ -13,15 +13,18 @@ Nematodes have different efficacies at different stages of their life cycles. Au
     <img src='img/overview.png' width='400' alt>
     <figcaption><center>Outline / timeline of the project.</center></figcaption>
 </figure>
+
 <br>
 <figure>
     <img src='img/sample_output.png' width='400'>
     <figcaption><center>Expected input and output.</center></figcaption>
 </figure>
+<br>
 
 ## Description of Data and EDA
 ### First batch of data
 BASF does not have a digital way to label the nematodes in the microscope images. Initially, we only have some sample microscope images and a slide briefing the characteristics of each life stage of nematodes. A sample image is shown below.
+
 <figure>
     <img src='img/img1.png' width='300'>
     <figcaption><center>A sample image from the first batch of data.</center></figcaption>
@@ -33,6 +36,7 @@ We implemented a labeling tool and delivered it to BASF. BASF used the labeling 
     <img src='img/img2.png' width='700'>
     <figcaption><center>Nematodes labeled by our labeling tool.</center></figcaption>
 </figure>
+<br>
 
 After that, we continuously received data from BASF. Finally, we have 406 valid labeled microscopy images, with unbalanced distribution as shown below.
 
@@ -49,30 +53,35 @@ We found many challenges for our data analysis and processing.
     <img src='img/c1.png' width='200'>
     <figcaption><center>Bad illumination.</center></figcaption>
 </figure>
+<br>
 
 <br>
 <figure>
     <img src='img/c2.png' width='200'>
     <figcaption><center>Noise.</center></figcaption>
 </figure>
+<br>
 
 <br>
 <figure>
     <img src='img/c3.png' width='200'>
     <figcaption><center>Overlapping nematodes.</center></figcaption>
 </figure>
+<br>
 
 <br>
 <figure>
     <img src='img/c4.png' width='200'>
     <figcaption><center>Nematodes with weird shape.</center></figcaption>
 </figure>
+<br>
 
 <br>
 <figure>
     <img src='img/c5.png' width='400'>
     <figcaption><center>Mislabeled data (All nematodes were labeled as "interested" in this image; however, it couldn't be true in this case).</center></figcaption>
 </figure>
+<br>
 
 ### Data augmentation
 Typically, we need ~10,000 samples to train a deep neural network such as faster R-CNN. Considering that we didn't have enough data, we applied aggressive data augmentation. For each original image, we generate its flipped versions and illumination adjusted versions, which grows our training set by 11 times.
@@ -86,6 +95,7 @@ Conventional computer vision methods rely on the extraction of feature vectors f
     <img src='img/HOG.png' width='400'>
     <figcaption><center>HOG feature descriptor (source: https://www.learnopencv.com/histogram-of-oriented-gradients/).</center></figcaption>
 </figure>
+<br>
 
 Deep learning methods usually outperform conventional methods when there are enough data. Faster R-CNN is the state-of-the-art deep learning algorithm for object detection [2]. The basic idea is first applying convolutional layers to get the feature maps. The region proposal network (RPN) takes different sizes and positions of bounding boxes from the feature map, and learns to classify bounding boxes into background and foreground, as well as learning to refine the bounding boxes. The output of RPN goes through region of interest pooling. It will resize the proposed bounding boxes into same shape, and the classifier will predict the class of each bounding box.
 
@@ -122,6 +132,7 @@ We applied a pre-trained res152 network to get the feature maps. The region prop
     <img src='img/faster_rcnn1.png' width='400'>
     <figcaption><center>Faster R-CNN.</center></figcaption>
 </figure>
+<br>
 
 The size of bounding boxes are not explicitly considered when we do classification, since RoI layer resizes bounding boxes into same dimensions. This makes sense in most applications because objects appear smaller when they are further away, when we do object detection in such cases size of bounding boxes shouldn’t be considered. However, in microscope images the distance to camera is fixed. And when we classify nematodes, size matters. Nematodes that are either too small or too big are unlikely to be interested. To take the size information into account, we implemented a modified version of faster R-CNN, which we call scale aware R-CNN (SA-R-CNN). We get the size information from RPN, which is fed into the classifier together with the results of RoI pooling.
 
@@ -130,6 +141,7 @@ The size of bounding boxes are not explicitly considered when we do classificati
     <img src='img/faster_rcnn2.png' width='200'>
     <figcaption><center>SA-R-CNN.</center></figcaption>
 </figure>
+<br>
 
 As we mentioned ealier, we applied aggressive data augmentation, which grows our training set by 11 times, since we didn't have enough data. Our implementation is adapted from an open source implementation of faster R-CNN, which uses VOC dataset. We built the dataset into VOC format for training and prediction.
 
@@ -175,12 +187,14 @@ We delivered a virtual machine with all models and GUI to BASF.
     <img src='img/vm1.png' width='300'>
     <figcaption><center>Virtual machine.</center></figcaption>
 </figure>
+<br>
 
 <br>
 <figure>
     <img src='img/vm2.png' width='300'>
     <figcaption><center>GUI (export counts, update, etc.).</center></figcaption>
 </figure>
+<br>
 
 The source code of our models can be found here: https://github.com/BASFProject-2018spring
 
