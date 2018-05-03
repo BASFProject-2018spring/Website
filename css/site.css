@@ -1,0 +1,158 @@
+* {
+  border-radius: 0 !important;
+}
+body {
+  background: white;
+  position: relative;
+  font-family: 'Lato', Arial, sans-serif;
+}
+.top-border {
+  padding: 0;
+  background: rgba(255, 255, 255, 0.3);
+  position: fixed;
+  width: 100vw;
+  z-index: 200;
+}
+#header {
+  width: 100%;
+  padding: 1em 0 0;
+}
+#header h1 {
+  font-size: 2.5rem;
+}
+#header h2 {
+  font-size: 1.5rem;
+  color: darkslategrey;
+}
+#main {
+  max-width: 100em;
+}
+#content {
+  padding-left: 18.5em;
+  padding-right: 1.5em;
+}
+#sidebar {
+  min-width: 17em;
+  max-width: 17em;
+  height: 100%;
+  padding: 0;
+  background: #48a770;
+  z-index: 100;
+}
+@media (max-width: 767px) {
+  #sidebar {
+    display: none;
+  }
+  #content {
+    padding-left: 1.5em;
+  }
+}
+@media (min-width: 1300px) {
+  #content {
+    padding-left: 20.5em;
+    padding-right: 3em;
+  }
+}
+#sidebar i {
+  padding-right: 1em;
+}
+#sidebar a,
+#sidebar a:hover,
+a:focus {
+  padding: 10px;
+  font-size: 1.0em;
+  font-weight: 400;
+  display: block;
+  color: #f3efe0;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+}
+#sidebar a.first {
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2), inset 0 1px rgba(0, 0, 0, 0.2) !important;
+}
+.sidebar-header h3 {
+  padding: 0.5em;
+  width: 100%;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.4);
+  background: #48a770;
+  font-size: 1.7em;
+}
+.sidebar-header div {
+  width: 100%;
+  background-color: #48a770;
+}
+.sidebar-header img {
+  width: 15em;
+  height: auto;
+  padding: 1em;
+}
+#sidebar ul li a:hover {
+  color: #3d722f;
+  background: white !important;
+}
+.nav-link.active {
+  color: white;
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+#sidebar a[aria-expanded="true"] {
+  color: #f3efe0;
+  background: rgba(0, 0, 0, 0.1);
+}
+#sidebar ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: rgba(0, 0, 0, 0.4);
+  font-weight: lighter;
+}
+#sidebar ul ul li {
+  width: 100%;
+}
+#content p {
+  font-size: large;
+  line-height: 1.7em;
+  letter-spacing: 0.4px;
+}
+h1 {
+  color: DARKOLIVEGREEN;
+  width: 100%;
+}
+h2 {
+  color: OLIVE;
+  width: 100%;
+}
+h3 {
+  color: OLIVEDRAB;
+  width: 100%;
+}
+.hr-heavy {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  border-top-width: 4px;
+  border-style: double;
+}
+.hr-light {
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+}
+figure {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.figure-center {
+  width: 100%;
+  text-align: center;
+}
+.figure-center img {
+  max-width: 80% !important;
+  height: auto;
+}
+.challenges-img {
+  text-align: center;
+}
+.challenges-img figure img {
+  height: 15em;
+  width: auto;
+}
+/*# sourceMappingURL=site.css.map */

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="IACS Capstone Project: Deep Learning for Nematode Detection and Classification (Partner: BASF)">
+    <meta name="author" content="Jiejun Lu, Hongxiang Qiu, Weidong Xu, Zeyu Zhao">
+    <!-- TODO add favicon -->
+    <link rel="icon" href="images/favicon.ico">
+    <title>Deep Learning for Nematode Detection and Classification</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css"
+          integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+</head>
+<body data-spy="scroll" data-target="#sidebar" data-offset="200">
+
+<div class="top-border"></div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <nav id="sidebar" class="col-lg-2 col-md-2 col-sm-3 position-fixed">
+            <div class="sidebar-header">
+                <div>
+                    <img src="images/iacs.png" height="90" width="328"/>
+                </div>
+                <h3><i class="fas fa-list-alt" style="padding-right: 0.4em; font-size: 0.8em"></i>Table of Contents</h3>
+            </div>
+
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item ">
+                    <a class="nav-link first active" href="#introduction"><i
+                            class="fas fa-clipboard-list"></i>INTRODUCTION</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#data"><i class="fas fa-database"></i>DATA</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#literature_review"><i class="fas fa-book"></i>LITERATURE REVIEW</a></li>
+                <li class="nav-item"><!-- Link with dropdown items -->
+                    <a class="nav-link"
+                       data-target="#modelMenu" data-toggle="collapse"
+                       aria-expanded="false" href="#model"><i class="fas fa-superscript"></i>MODELING</a>
+                    <ul class="nav collapse" id="modelMenu">
+                        <li class="nav-item"><a class="nav-link" href="#conventional">Conventional Models</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#rcnn">Deep Learning (R-CNN)</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sarcnn">Adding Scale Information</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#results">
+                        <i class="fas fa-edit"></i>Results
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#deliverable">
+                        <i class="fas fa-box-open"></i>Deliverable
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#conclusions">
+                        <i class="fas fa-box-open"></i>Conclusions & Future Work
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="main" class="col">
+            <div id="content">
+                <div id="header" class="row col">
+                    <div class="col">
+                        <h1>
+                            A Biological Challenge in the Billions
+                        </h1>
+                        <h2>
+                            Deep Learning for Nematode Detection and Classification
+                        </h2>
+                        <hr class="row hr-heavy">
+                    </div>
+                </div>
+
+                <div id="introduction" class="col">
+                    <div class="row">
+                        <h2>Introduction</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+                    <div class="row">
+                        <p>
+                            BASF is the only mass producer of nematodes used for slug protection, utilizing a plant in
+                            Littlehampton, UK equipped with 20 vessels that provide over 190,000 L of fermentation
+                            capacity
+                            and
+                            can hold ~ 38 × 10 ^ 12 nematodes. Product quality is continually tested and maintained
+                            through
+                            refrigeration and efficient shipping logistics to all our customers, which is a key BASF
+                            skill.
+                            Using chemical pesticides to protect crops and plants from pests can be controversial
+                            because
+                            those
+                            very pesticides can have detrimental consequences. An alternative to chemical pesticides is
+                            to
+                            encourage naturally occurring organisms in the soil to destroy pests such as slugs, weevils
+                            and
+                            caterpillars. Nematodes are naturally occurring microscopic worms already present in the
+                            soil
+                            that
+                            actively seek out and destroy pests. Biologicals for pest control is one of the focus areas
+                            within
+                            BASF's Agricultural Solutions business. They develop unique formulations of beneficial
+                            nematodes
+                            and
+                            their storage media to provide optimum stability and product performance. The nematodes in
+                            the
+                            products selectively target problematic insect species, while remaining harmless to
+                            beneficial
+                            insects (e.g. ladybugs) and nearby wildlife. Finding an efficient way to use nematodes to
+                            protect
+                            crops could potentially reduce the need to introduce artificial chemicals in to the food
+                            supply.
+                        </p>
+                        <figure class="figure text-center figure-center">
+                            <img src="images/life_stages.png" class="figure-img img-fluid"/>
+                            <figcaption class="figure-caption">Different life stages of nematodes.</figcaption>
+                        </figure>
+                        <p>
+                            Nematodes have different efficacies at different stages of their life cycles. Automation of
+                            identification of whether infective juveniles or not enable efficient quality control. This
+                            project
+                            applied deep learning techniques to light microscopy image data of nematode populations to
+                            determine
+                            whether nematodes are at infective juvenile stage or not. We implemented and trained a
+                            faster
+                            region-based convolutional neural network (faster R-CNN) model for the identification and
+                            classification of nematodes from microscope images, and built a software package in a
+                            virtual
+                            machine image for the automation of nematode classification task.
+                        </p>
+                        <figure class="figure">
+                            <img src="images/input_output.png" class="figure-img img-fluid"/>
+                            <figcaption class="figure-caption">Expected input and output.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div id="data" class="col">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Data</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+                    <div class="row">
+                        <h3>First batch of data</h3>
+                        <p>
+                            BASF does not have a digital way to label the nematodes in the microscope images. Initially,
+                            we
+                            only
+                            have some sample microscope images and a slide briefing the characteristics of each life
+                            stage
+                            of
+                            nematodes. A sample image is shown below.
+
+                            A sample image from the first batch of data.
+                        </p>  <!-- TODO -->
+                    </div>
+
+                    <div class="row">
+                        <h3>Labeling tool</h3>
+
+                        <p>
+                            We implemented a labeling tool and delivered it to BASF. BASF used the labeling tool that we
+                            provided to
+                            generate digital labels of nematodes in microscope images.
+
+                            Nematodes labeled by our labeling tool.<!--TODO-->
+
+                            After that, we continuously received data from BASF. Finally, we have 406 valid labeled
+                            microscopy
+                            images, with unbalanced distribution as shown below.
+                            Nematode distribution.
+                        </p> <!--TODO-->
+
+                        <figure class="figure text-center figure-center">
+                            <img src="images/labeling_tool.png" class="figure-img img-fluid"/>
+                            <figcaption class="figure-caption">Screen shoot of our labeling tool.</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="row">
+                        <h3>Challenges</h3>
+                        <p>We found many challenges for our data analysis and processing:</p>
+
+                        <div class="container-fluid challenges-img">
+                            <figure class="figure text-center">
+                                <img src="images/c1.png" class="figure-img img-fluid"/>
+                                <figcaption class="figure-caption">Bad illumination.</figcaption>
+                            </figure>
+
+                            <figure class="figure text-center">
+                                <img src="images/c2.png" class="figure-img img-fluid"/>
+                                <figcaption class="figure-caption">Noise.</figcaption>
+                            </figure>
+
+                            <figure class="figure text-center">
+                                <img src="images/c3.png" class="figure-img img-fluid"/>
+                                <figcaption class="figure-caption">Overlapping nematodes.</figcaption>
+                            </figure>
+
+                            <figure class="figure text-center">
+                                <img src="images/c4.png" class="figure-img img-fluid"/>
+                                <figcaption class="figure-caption">Nematodes with weird shape.</figcaption>
+                            </figure>
+
+                            <figure class="figure text-center">
+                                <img src="images/c5.png" class="figure-img img-fluid"/>
+                                <figcaption class="figure-caption">
+                                    Mislabeled data <br>(All nematodes were labeled as "interested" in this image;
+                                    however,
+                                    it
+                                    couldn't be true in this case).
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3>Data augmentation</h3>
+                        <p>
+                            Typically, we need much more samples to train a deep neural network such as faster R-CNN.
+                            Considering we didn't have enough data, we applied aggressive data augmentation.
+                            For each original image, we generate its flipped versions and illumination adjusted
+                            versions,
+                            which grows our training set by 11 times.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="literature_review" class="col">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Literature Review</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+                    <div class="row">
+                        <p>
+                            Conventional computer vision methods rely on the extraction of feature vectors for the
+                            classifier from images or image patches by using the feature descriptor. Histogram of
+                            oriented gradients
+                            (HOG)
+                            is a
+                            popular feature descriptor, which uses the distribution of directions of gradients as
+                            features
+                            [1].
+                            Gradients of an image are large around edges and corners, which carry a lot of information
+                            about
+                            object
+                            shape, and are thus useful for classification. The feature vectors extracted by the HOG
+                            descriptor
+                            can
+                            be fed into a conventional classification algorithm, such as support vector machine (SVM).
+                        </p>
+
+                        <figure class="figure text-center figure-center">
+                            <img src='images/lr_HOG.png' class="figure-img img-fluid">
+                            <figcaption class="figure-caption">HOG feature descriptor (source:
+                                https://www.learnopencv.com/histogram-of-oriented-gradients/).
+                            </figcaption>
+                        </figure>
+                        <p>
+                            Deep learning methods usually outperform conventional methods when there are enough data.
+                            Faster
+                            R-CNN
+                            is the state-of-the-art deep learning algorithm for object detection [2]. The basic idea is
+                            first
+                            applying convolutional layers to get the feature maps. The region proposal network (RPN)
+                            takes
+                            different
+                            sizes and positions of bounding boxes from the feature map, and learns to classify bounding
+                            boxes
+                            into
+                            background and foreground, as well as learning to refine the bounding boxes. The output of
+                            RPN
+                            goes
+                            through region of interest pooling. It will resize the proposed bounding boxes into same
+                            shape,
+                            and
+                            the
+                            classifier will predict the class of each bounding box.
+                        </p>
+                        <figure class="figure text-center figure-center">
+                            <img src='images/faster_rcnn.png' class="figure-img img-fluid">
+                            <figcaption class="figure-caption">Faster R-CNN (source:
+                                https://arxiv.org/pdf/1506.01497.pdf).
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div id="model" class="col">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Modeling</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+                    <div class="row" id="conventional">
+                        <h3>Conventional Models</h3>
+
+                        <p>
+                            From a machine learning point of view, the problem could be divided into two parts:
+                            detection and classification. Detection is to find the individual nematodes in the
+                            microscope image. Classification is to predict whether the nematodes is in interested stage.
+                        </p>
+                        <p>
+                            The steps of our baseline model is as follows:
+
+                        </p>
+
+                        <ol>
+                            <li>
+                                Extract images of individual nematodes from a microscope image. Our segmentation uses
+                                conventional computer vision techniques. We set area threshold and average color
+                                threshold to distinguish large noise contours from nematodes.
+                            </li>
+                            <li>
+                                Apply HOG feature extraction algorithm to obtain feature vectors for extracted
+                                nematodes.
+                            </li>
+                            <li>
+                                Feed the feature vectors to a simple classifier, such as support vector machine or
+                                random forest.
+                            </li>
+                            <li>
+                                Count the number of interested nematodes in each microscope image.
+                            </li>
+                        </ol>
+
+                        <figure class="figure text-center figure-center">
+                            <img src='images/baseline.png' class="figure-img img-fluid">
+                            <figcaption class="figure-caption">Baseline models pipeline.</figcaption>
+                        </figure>
+
+                    </div>
+                    <div class="row" id="rcnn">
+                        <h3>Deep Learning (R-CNN)</h3>
+                        <p>
+                            Our baseline models can not handle the situation of overlapped nematodes effectively. And
+                            deep learning models usually outperform conventional methods when there are enough data. We
+                            applied an end-to-end faster R-CNN model for nematode detection and classification.
+                        </p>
+
+                        <p>
+
+                            We applied a pre-trained res152 network to get the feature maps. The region proposal network
+                            (RPN) takes different sizes and positions of bounding boxes from the feature map, and learns
+                            to classify bounding boxes into background and foreground; it also learns to refine the
+                            bounding boxes. The output of RPN goes through region of interest (RoI) pooling. It resizes
+                            the proposed bounding boxes into same shape, and the classifier will predict the class of
+                            each bounding box.
+                        </p>
+
+                        <figure class="figure text-center figure-center">
+                            <img src='images/faster_rcnn1.png' class="figure-img img-fluid">
+                            <figcaption class="figure-caption">Faster R-CNN.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="row" id="sarcnn">
+                        <h3>Adding Scale Information</h3>
+                        <p>
+                            The size of bounding boxes are not explicitly considered when we do classification, since
+                            RoI layer resizes bounding boxes into same dimensions. This makes sense in most applications
+                            because objects appear smaller when they are further away, when we do object detection in
+                            such cases size of bounding boxes shouldn’t be considered. However, in microscope images the
+                            distance to camera is fixed. And when we classify nematodes, size matters. Nematodes that
+                            are either too small or too big are unlikely to be interested. To take the size information
+                            into account, we implemented a modified version of faster R-CNN, which we call scale aware
+                            R-CNN (SA-R-CNN). We get the size information from RPN, which is fed into the classifier
+                            together with the results of RoI pooling.
+                        </p>
+
+                        <figure class="figure text-center figure-center">
+                            <img src='images/faster_rcnn2.png' class="figure-img img-fluid"
+                                 style="max-width: 60% !important;">
+                            <figcaption class="figure-caption">SA-R-CNN.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div id="results" class="col">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Results</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+
+                    <p>
+                        We recieved 4 batches of data, which contained 406 labeled images in total. We trained our
+                        models on
+                        the first 3 batches and evaluated on the last batch (42 images).
+                    </p>
+
+
+                    <p>
+                        The bounding box detection error for SA-R-CNN is summarized below:
+                    </p>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Detection</th>
+                            <th>Actual label</th>
+                            <th>No Actual Label</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <th>Predicted Label</th>
+                            <td>85</td>
+                            <td>78 (only 1 infective)</td>
+                        </tr>
+                        <tr>
+                            <th> No Predicted Label</th>
+                            <td>0</td>
+                            <td>N/A</td>
+                        </tr>
+                    </table>
+
+                    <p>
+                        The classification results are summarized below (AUC/accuracy is evaluated by matching each box
+                        predicted to each box labeled and ignoring those don’t match):
+                    </p>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>AUC</th>
+                            <th>Accuracy</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>SVM</td>
+                            <td>0.66</td>
+                            <td>0.75</td>
+                        </tr>
+                        <tr>
+                            <td>Random Forest</td>
+                            <td>0.69</td>
+                            <td>0.75</td>
+                        </tr>
+                        <tr>
+                            <td>Faster R-CNN (res152)</td>
+                            <td>0.82</td>
+                            <td>0.74</td>
+                        </tr>
+                        <tr>
+                            <td><b>SA-R-CNN (res152)</b></td>
+                            <td><b>0.88</b></td>
+                            <td><b>0.75</b></td>
+                        </tr>
+                    </table>
+                    <p>
+                        From the results, we see our SA-R-CNN is better than the default faster R-CNN and both of them
+                        are
+                        better than conventional models (since conventional models are worse on detection, the
+                        statistics
+                        shown for conventional models are higher than the actual values). For detection, our SA-R-CNN
+                        predicts many nematode-like objects such as dead nematodes. However, since almost all those
+                        predictions are non-infective, we think it’s not an issue (dead nematodes are not infective
+                        anyway).
+                    </p>
+                    <p>
+                        As discussed, we think our models are not trained enough due to the lack of training data. With
+                        more
+                        data, we believe our models can do better.
+                    </p>
+                </div>
+
+                <div id="deliverable" class="col">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Deliverable</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+
+                    <p>
+                        We built a software that automatically output the predictions for each image.
+                    </p>
+
+                    <figure class="figure-center figure">>
+                        <img src='images/success1.png' style="max-width: 400px !important;">
+                        <figcaption>An example output image by our software.
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        We delivered a virtual machine with all models and GUI to BASF.
+                    </p>
+
+                    <br>
+                    <figure class="figure-center figure">
+                        <img src='images/vm1.png' style="max-width: 600px !important;">
+                        <figcaption>Virtual machine.
+                        </figcaption>
+                    </figure>
+                    <br>
+
+                    <br>
+                    <figure class="figure-center figure">
+                        <img src='images/vm2.png' style="max-width: 400px !important;">
+                        <figcaption>GUI (export counts, update, etc.).
+                        </figcaption>
+                    </figure>
+                    <br>
+
+                    <p>
+                        The source code of our models can be found here: <a
+                            href="https://github.com/BASFProject-2018spring">https://github.com/BASFProject-2018spring</a>
+                    </p>
+                    <p>
+                        The VM can be downloaded from our Google Drive:
+                        <a href="https://drive.google.com/file/d/1-VdYoSuK8tQ_kuPHHLNH-PFjvQa4caqY/view?usp=sharing">https://drive.google.com/file/d/1-VdYoSuK8tQ_kuPHHLNH-PFjvQa4caqY/view?usp=sharing</a>
+                    </p>
+                    <p>
+                        The video tutorial can be found here: <a href="https://youtu.be/2c5iCQSVKvE">https://youtu.be/2c5iCQSVKvE</a>
+                    </p>
+
+                </div>
+
+                <div id="conclusions" class="col">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Conclusions & Future Work</h2>
+                    </div>
+                    <hr class="row hr-light"/>
+
+                    <p>
+                        We have implemented a deep learning method, faster R-CNN, and have created a new network
+                        architecture to make R-CNN model sacle aware, for nematode classification. Our deep learning
+                        models outperform baseline models, although our models suffer from overfitting due to the
+                        unavailability of enough training data. Also, we have delivered our models and GUI within a
+                        virtual machine to BASF.
+                    </p>
+                    <p>
+                        Our models can be improved in the following aspects:
+                    </p>
+                    <ol>
+                        <li>
+                            Deep learning models typically require hugh amount of training data. We believe our model
+                            can perform better with more data.
+                        </li>
+                        <li>
+                            Currently our models assume the input images are at a fixed scale. We should be able to
+                            handle images at different scales in the future.
+                        </li>
+                        <li>
+                            More efforts are required to improve the interpretability of our models.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script> window.jQuery || document.write('<script src="./js/jquery.js"><\/script>')</script>
+<script src="js/bootstrap.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
