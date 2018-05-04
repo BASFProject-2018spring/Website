@@ -24,7 +24,7 @@
 @h3-color: OLIVEDRAB;
 
 @sidebar-width: 17em;
-@topbar-height: 3em;
+@topbar-height: 4em;
 
 @breakpoint: 767px;
 
@@ -127,13 +127,15 @@ body {
 
   #topbar {
     display: none;
+    height: @topbar-height;
 
     @media (max-width: @breakpoint) {
       display: block;
     }
 
     .navbar-brand {
-      height: @topbar-height;
+      height: 100%;
+      padding: 0;
 
       img {
         height: 100%;

@@ -26,7 +26,7 @@ body {
 }
 @media (max-width: 767px) {
   #content {
-    padding-top: 4em;
+    padding-top: 5em;
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
@@ -85,6 +85,7 @@ body {
 }
 #nav #topbar {
   display: none;
+  height: 4em;
 }
 @media (max-width: 767px) {
   #nav #topbar {
@@ -92,7 +93,8 @@ body {
   }
 }
 #nav #topbar .navbar-brand {
-  height: 3em;
+  height: 100%;
+  padding: 0;
 }
 #nav #topbar .navbar-brand img {
   height: 100%;
@@ -184,7 +186,7 @@ figure {
   width: auto;
 }
 .section {
-  padding-top: 6em;
-  margin-top: -6em;
+  padding-top: 8em;
+  margin-top: -8em;
 }
 /*# sourceMappingURL=site.css.map */
