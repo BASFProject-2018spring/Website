@@ -134,7 +134,7 @@ body {
 #nav #nav-content ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   font-weight: lighter;
 }
 #nav #nav-content ul ul li {
@@ -142,7 +142,7 @@ body {
 }
 .nav-link.active {
   color: white;
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
 }
 h1 {
   color: DARKOLIVEGREEN;
