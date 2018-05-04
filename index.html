@@ -12,58 +12,80 @@
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/site.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css"
-          integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/fontawesome-all.css">
 </head>
-<body data-spy="scroll" data-target="#sidebar" data-offset="200">
-
-<div class="top-border"></div>
+<body data-spy="scroll" data-target="#nav-content" data-offset="20">
 
 <div class="container-fluid">
 
     <div class="row">
-        <nav id="sidebar" class="col-lg-2 col-md-2 col-sm-3 position-fixed">
-            <div class="sidebar-header">
+        <nav id="nav" class="col-lg-2 col-md-2 col-sm-3 position-fixed">
+            <div id="sidebar-header">
                 <div>
-                    <img src="images/iacs.png" height="90" width="328"/>
+                    <img src="images/iacs.png"/>
                 </div>
                 <h3><i class="fas fa-list-alt" style="padding-right: 0.4em; font-size: 0.8em"></i>Table of Contents</h3>
             </div>
 
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item ">
-                    <a class="nav-link first active" href="#introduction"><i
-                            class="fas fa-clipboard-list"></i>INTRODUCTION</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#data"><i class="fas fa-database"></i>DATA</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#literature_review"><i class="fas fa-book"></i>LITERATURE REVIEW</a></li>
-                <li class="nav-item"><!-- Link with dropdown items -->
-                    <a class="nav-link"
-                       data-target="#modelMenu" data-toggle="collapse"
-                       aria-expanded="false" href="#model"><i class="fas fa-superscript"></i>MODELING</a>
-                    <ul class="nav collapse" id="modelMenu">
-                        <li class="nav-item"><a class="nav-link" href="#conventional">Conventional Models</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#rcnn">Deep Learning (R-CNN)</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sarcnn">Adding Scale Information</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#results">
-                        <i class="fas fa-edit"></i>Results
+            <nav id="topbar" class="navbar navbar-light">
+                <div class="navbar-brand">
+                    <a href="#">
+                        <img src="images/iacs.png"/>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#deliverable">
-                        <i class="fas fa-box-open"></i>Deliverable
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#conclusions">
-                        <i class="fas fa-box-open"></i>Conclusions & Future Work
-                    </a>
-                </li>
-            </ul>
+                </div>
+                <div class="float-right ml-auto">
+                    <button class="navbar-toggler float-right" type="button" data-toggle="collapse"
+                            data-target="#nav-content"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+
+            <div id="nav-content" class="collapse navbar-collapse">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item ">
+                        <a class="nav-link first active" href="#introduction">
+                            <i class="fas fa-clipboard-list"></i>INTRODUCTION
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#data">
+                            <i class="fas fa-database"></i>DATA
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#literature_review">
+                            <i class="fas fa-book"></i>LITERATURE REVIEW
+                        </a>
+                    </li>
+                    <li class="nav-item"><!-- Link with dropdown items -->
+                        <a class="nav-link"
+                           data-target="#modelMenu" data-toggle="collapse"
+                           aria-expanded="false" href="#model"><i class="fas fa-superscript"></i>MODELING</a>
+                        <ul class="nav collapse" id="modelMenu">
+                            <li class="nav-item"><a class="nav-link" href="#conventional">Conventional Models</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#rcnn">Deep Learning (R-CNN)</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#sarcnn">Adding Scale Information</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#results">
+                            <i class="fas fa-edit"></i>Results
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deliverable">
+                            <i class="fas fa-box-open"></i>Deliverable
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#conclusions">
+                            <i class="fas fa-compass"></i>Conclusions & Future Work
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
         <div id="main" class="col">
@@ -80,7 +102,7 @@
                     </div>
                 </div>
 
-                <div id="introduction" class="col">
+                <div id="introduction" class="col section">
                     <div class="row">
                         <h2>Introduction</h2>
                     </div>
@@ -143,7 +165,7 @@
                     </div>
                 </div>
 
-                <div id="data" class="col">
+                <div id="data" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
                         <h2>Data</h2>
@@ -190,9 +212,9 @@
                         <h3>Challenges</h3>
                         <p>We found many challenges for our data analysis and processing:</p>
 
-                        <div class="container-fluid challenges-img">
+                        <div class="container-fluid" id="challenges-img">
                             <figure class="figure text-center">
-                                <img src="images/c1.png" class="figure-img img-fluid"/>
+                                <img src="images/c1.png" class="figure-img img-fluid" width="300"/>
                                 <figcaption class="figure-caption">Bad illumination.</figcaption>
                             </figure>
 
@@ -235,7 +257,7 @@
                     </div>
                 </div>
 
-                <div id="literature_review" class="col">
+                <div id="literature_review" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
                         <h2>Literature Review</h2>
@@ -296,13 +318,13 @@
                     </div>
                 </div>
 
-                <div id="model" class="col">
+                <div id="model" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
                         <h2>Modeling</h2>
                     </div>
                     <hr class="row hr-light"/>
-                    <div class="row" id="conventional">
+                    <div class="row section" id="conventional">
                         <h3>Conventional Models</h3>
 
                         <p>
@@ -340,7 +362,7 @@
                         </figure>
 
                     </div>
-                    <div class="row" id="rcnn">
+                    <div class="row section" id="rcnn">
                         <h3>Deep Learning (R-CNN)</h3>
                         <p>
                             Our baseline models can not handle the situation of overlapped nematodes effectively. And
@@ -363,7 +385,7 @@
                             <figcaption class="figure-caption">Faster R-CNN.</figcaption>
                         </figure>
                     </div>
-                    <div class="row" id="sarcnn">
+                    <div class="row section" id="sarcnn">
                         <h3>Adding Scale Information</h3>
                         <p>
                             The size of bounding boxes are not explicitly considered when we do classification, since
@@ -385,7 +407,7 @@
                     </div>
                 </div>
 
-                <div id="results" class="col">
+                <div id="results" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
                         <h2>Results</h2>
@@ -474,7 +496,7 @@
                     </p>
                 </div>
 
-                <div id="deliverable" class="col">
+                <div id="deliverable" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
                         <h2>Deliverable</h2>
@@ -525,7 +547,7 @@
 
                 </div>
 
-                <div id="conclusions" class="col">
+                <div id="conclusions" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
                         <h2>Conclusions & Future Work</h2>

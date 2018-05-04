@@ -6,13 +6,6 @@ body {
   position: relative;
   font-family: 'Lato', Arial, sans-serif;
 }
-.top-border {
-  padding: 0;
-  background: rgba(255, 255, 255, 0.3);
-  position: fixed;
-  width: 100vw;
-  z-index: 200;
-}
 #header {
   width: 100%;
   padding: 1em 0 0;
@@ -31,20 +24,11 @@ body {
   padding-left: 18.5em;
   padding-right: 1.5em;
 }
-#sidebar {
-  min-width: 17em;
-  max-width: 17em;
-  height: 100%;
-  padding: 0;
-  background: #48a770;
-  z-index: 100;
-}
 @media (max-width: 767px) {
-  #sidebar {
-    display: none;
-  }
   #content {
-    padding-left: 1.5em;
+    padding-top: 4em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
   }
 }
 @media (min-width: 1300px) {
@@ -53,12 +37,78 @@ body {
     padding-right: 3em;
   }
 }
-#sidebar i {
-  padding-right: 1em;
+#content p {
+  font-size: large;
+  line-height: 1.7em;
+  letter-spacing: 0.4px;
 }
-#sidebar a,
-#sidebar a:hover,
-a:focus {
+#nav {
+  min-width: 17em;
+  max-width: 17em;
+  height: 100%;
+  padding: 0;
+  background: #48a770;
+  z-index: 100;
+}
+@media (max-width: 767px) {
+  #nav {
+    width: 100%;
+    max-width: initial;
+    min-width: initial;
+    height: initial;
+  }
+}
+@media (max-width: 767px) {
+  #nav #sidebar-header {
+    display: none;
+  }
+}
+#nav #sidebar-header img {
+  width: 15em;
+  height: auto;
+  padding: 1em;
+}
+#nav #sidebar-header h3 {
+  padding: 0.5em;
+  width: 100%;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.4);
+  background: #48a770;
+  font-size: 1.6em;
+}
+#nav #sidebar-header div {
+  width: 100%;
+  background-color: #48a770;
+}
+#nav #sidebar-header i {
+  width: initial !important;
+}
+#nav #topbar {
+  display: none;
+}
+@media (max-width: 767px) {
+  #nav #topbar {
+    display: block;
+  }
+}
+#nav #topbar .navbar-brand {
+  height: 3em;
+}
+#nav #topbar .navbar-brand img {
+  height: 100%;
+  width: auto;
+}
+@media not all and (max-width: 767px) {
+  #nav #nav-content {
+    display: block !important;
+  }
+}
+#nav #nav-content i {
+  width: 2em;
+}
+#nav #nav-content a,
+#nav #nav-content a:hover,
+#nav #nav-content a:focus {
   padding: 10px;
   font-size: 1.0em;
   font-weight: 400;
@@ -68,51 +118,29 @@ a:focus {
   transition: all 0.3s;
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
 }
-#sidebar a.first {
+#nav #nav-content a.first {
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2), inset 0 1px rgba(0, 0, 0, 0.2) !important;
 }
-.sidebar-header h3 {
-  padding: 0.5em;
-  width: 100%;
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.4);
-  background: #48a770;
-  font-size: 1.7em;
-}
-.sidebar-header div {
-  width: 100%;
-  background-color: #48a770;
-}
-.sidebar-header img {
-  width: 15em;
-  height: auto;
-  padding: 1em;
-}
-#sidebar ul li a:hover {
+#nav #nav-content ul li a:hover {
   color: #3d722f;
   background: white !important;
 }
-.nav-link.active {
-  color: white;
-  background: rgba(0, 0, 0, 0.2) !important;
-}
-#sidebar a[aria-expanded="true"] {
+#nav #nav-content a[aria-expanded="true"] {
   color: #f3efe0;
   background: rgba(0, 0, 0, 0.1);
 }
-#sidebar ul ul a {
+#nav #nav-content ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
   background: rgba(0, 0, 0, 0.4);
   font-weight: lighter;
 }
-#sidebar ul ul li {
+#nav #nav-content ul ul li {
   width: 100%;
 }
-#content p {
-  font-size: large;
-  line-height: 1.7em;
-  letter-spacing: 0.4px;
+.nav-link.active {
+  color: white;
+  background: rgba(0, 0, 0, 0.2) !important;
 }
 h1 {
   color: DARKOLIVEGREEN;
@@ -148,11 +176,15 @@ figure {
   max-width: 80% !important;
   height: auto;
 }
-.challenges-img {
+#challenges-img {
   text-align: center;
 }
-.challenges-img figure img {
+#challenges-img figure img {
   height: 15em;
   width: auto;
+}
+.section {
+  padding-top: 6em;
+  margin-top: -6em;
 }
 /*# sourceMappingURL=site.css.map */
