@@ -100,10 +100,20 @@ body {
   height: 100%;
   width: auto;
 }
+#nav #nav-content {
+  height: 100%;
+  max-height: unset !important;
+}
+#nav #nav-content > ul {
+  height: 40em;
+}
 @media not all and (max-width: 767px) {
   #nav #nav-content {
     display: block !important;
   }
+}
+#nav #nav-content li {
+  width: 100%;
 }
 #nav #nav-content i {
   width: 2em;

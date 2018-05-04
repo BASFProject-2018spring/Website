@@ -145,9 +145,19 @@ body {
   }
 
   #nav-content {
+    height: 100%;
+    max-height: unset !important;
+
+    >ul {
+      height: 40em;
+    }
 
     @media not all and (max-width: @breakpoint) {
       display: block !important;
+    }
+
+    li {
+      width: 100%;
     }
 
     i {
