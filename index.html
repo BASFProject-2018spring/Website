@@ -284,7 +284,7 @@
                             is a
                             popular feature descriptor, which uses the distribution of directions of gradients as
                             features
-                            [1].
+                            [<a href="https://ieeexplore.ieee.org/document/1467360/">1</a>].
                             Gradients of an image are large around edges and corners, which carry a lot of information
                             about
                             object
@@ -304,18 +304,18 @@
                             Deep learning methods usually outperform conventional methods when there are enough data.
                             Faster
                             R-CNN
-                            is the state-of-the-art deep learning algorithm for object detection [2]. The basic idea is
+                            is the state-of-the-art deep learning algorithm for object detection [<a href="https://arxiv.org/abs/1506.01497">2</a>]. The basic idea is
                             first
                             applying convolutional layers to get the feature maps. The region proposal network (RPN)
-                            takes
+                            then takes
                             different
-                            sizes and positions of bounding boxes from the feature map, and learns to classify bounding
+                            sizes and positions of anchor boxes from the feature map, and learns to classify bounding
                             boxes
                             into
-                            background and foreground, as well as learning to refine the bounding boxes. The output of
+                            background and foreground, as well as learning to refine the bounding boxes. The foreground boxes from
                             RPN
                             goes
-                            through region of interest pooling. It will resize the proposed bounding boxes into same
+                            through region of interest pooling. It will resize the feature map corresponding to the proposed bounding boxes into same
                             shape,
                             and
                             the
