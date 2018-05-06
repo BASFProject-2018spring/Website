@@ -156,7 +156,7 @@
                             project
                             applied deep learning techniques to light microscopy image data of nematode populations to
                             determine
-                            whether nematodes are at infective juvenile stage or not. We implemented and trained a scale-aware (SA) version of
+                            whether nematodes are at infective juvenile stage <b>(interested)</b> or not <b>(non-interested)</b>. We implemented and trained a scale-aware (SA) version of
                             faster
                             region-based convolutional neural network (faster R-CNN) model for the identification and
                             classification of nematodes from microscope images, and built a software package in a
@@ -384,11 +384,11 @@
 
                         <p>
 
-                            We applied a pre-trained res152 network to get the feature maps. The region proposal network
-                            (RPN) takes different sizes and positions of bounding boxes from the feature map, and learns
+                            We applied a pre-trained RES-152 [<a href="https://arxiv.org/abs/1512.03385">3</a>] network to get the feature maps. The region proposal network
+                            (RPN) takes different sizes and positions of anchor boxes from the feature map, and learns
                             to classify bounding boxes into background and foreground; it also learns to refine the
                             bounding boxes. The output of RPN goes through region of interest (RoI) pooling. It resizes
-                            the proposed bounding boxes into same shape, and the classifier will predict the class of
+                            the feature map corresponding to the proposed bounding boxes into same shape, and the classifier will predict the class of
                             each bounding box.
                         </p>
 
@@ -401,12 +401,12 @@
                         <h3>Adding Scale Information</h3>
                         <p>
                             The size of bounding boxes are not explicitly considered when we do classification, since
-                            RoI layer resizes bounding boxes into same dimensions. This makes sense in most applications
-                            because objects appear smaller when they are further away, when we do object detection in
-                            such cases size of bounding boxes shouldn’t be considered. However, in microscope images the
+                            RoI layer resizes feature maps into same dimensions. This makes sense in most applications
+                            because objects appear smaller when they are further away. When we do object detection in
+                            such cases, size of bounding boxes (or feature maps) shouldn’t be considered. However, in microscope images, the
                             distance to camera is fixed. And when we classify nematodes, size matters. Nematodes that
                             are either too small or too big are unlikely to be interested. To take the size information
-                            into account, we implemented a modified version of faster R-CNN, which we call scale aware
+                            into account, we implemented a modified version of faster R-CNN, which we call scale-aware
                             R-CNN (SA-R-CNN). We get the size information from RPN, which is fed into the classifier
                             together with the results of RoI pooling.
                         </p>
@@ -448,7 +448,7 @@
                         <tr>
                             <th>Predicted Label</th>
                             <td>85</td>
-                            <td>78 (only 1 infective)</td>
+                            <td>78 (only 1 interested)</td>
                         </tr>
                         <tr>
                             <th> No Predicted Label</th>
@@ -498,7 +498,7 @@
                         statistics
                         shown for conventional models are higher than the actual values). For detection, our SA-R-CNN
                         predicts many nematode-like objects such as dead nematodes. However, since almost all those
-                        predictions are non-infective, we think it’s not an issue (dead nematodes are not infective
+                        predictions are non-interested, we think it’s not an issue (dead nematodes are not interested
                         anyway).
                     </p>
                     <p>
@@ -516,7 +516,7 @@
                     <hr class="row hr-light"/>
 
                     <p>
-                        We built a software that automatically output the predictions for each image.
+                        We built a software that automatically outputs the predictions and generates a CSV for counts of interested/non-interested nematodes in each image.
                     </p>
 
                     <figure class="figure-center figure">
@@ -546,7 +546,7 @@
                     <br>
 
                     <p>
-                        The source code of our models can be found here: <a
+                        The source code of our models and software can be found here: <a
                             href="https://github.com/BASFProject-2018spring">https://github.com/BASFProject-2018spring</a>
                     </p>
                     <p>
@@ -566,6 +566,10 @@
                         We also made a video tutorial for the training:
                     </p>
                     <iframe style="display:block;margin:0 auto;" width="560" height="315" src="https://www.youtube.com/embed/mN6CnejkdtE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                    <p>In the latest meeting, BASF told us they would like to add more classes of nematodes in the future (such as dead nematode class). So we include the places to change for our model working for more classes. This documentation is also in our training pipeline.</p>
+
+                    <p>Once BASF labels new data (with more classes), they can make changes to our code accordingly and train a new model.</p>
 
                 </div>
                 <div id="interpretation" class="col section">
