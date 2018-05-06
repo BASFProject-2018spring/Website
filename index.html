@@ -46,23 +46,23 @@
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item ">
                         <a class="nav-link first active" href="#introduction">
-                            <i class="fas fa-clipboard-list"></i>INTRODUCTION
+                            <i class="fas fa-clipboard-list"></i>Introduction
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#data">
-                            <i class="fas fa-database"></i>DATA
+                            <i class="fas fa-database"></i>Data
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#literature_review">
-                            <i class="fas fa-book"></i>LITERATURE REVIEW
+                            <i class="fas fa-book"></i>Literature Review
                         </a>
                     </li>
                     <li class="nav-item"><!-- Link with dropdown items -->
                         <a class="nav-link"
                            data-target="#modelMenu" data-toggle="collapse"
-                           aria-expanded="false" href="#model"><i class="fas fa-superscript"></i>MODELING</a>
+                           aria-expanded="false" href="#model"><i class="fas fa-superscript"></i>Modeling</a>
                         <ul class="nav collapse" id="modelMenu">
                             <li class="nav-item"><a class="nav-link" href="#conventional">Conventional Models</a></li>
                             <li class="nav-item"><a class="nav-link" href="#rcnn">Deep Learning (R-CNN)</a></li>
@@ -77,6 +77,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#deliverable">
                             <i class="fas fa-box-open"></i>Deliverable
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#interpretation">
+                            <i class="fas fa-table"></i>Empirical Interpretation
                         </a>
                     </li>
                     <li class="nav-item">
@@ -544,10 +549,69 @@
                     <p>
                         The video tutorial of our software is here: 
                     </p>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/2c5iCQSVKvE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe style="display:block;margin:0 auto;" width="560" height="315" src="https://www.youtube.com/embed/2c5iCQSVKvE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <p>
+                        In case BASF wants to retrain the model in the future with more available data, we wrote a documented <a href="https://github.com/BASFProject-2018spring/ABOUT">training pipeline</a>.
+                    </p><p>
+                        All code can be found in our <a href="https://github.com/BASFProject-2018spring">project organization</a> (public)
+                    </p>
+                    <p>
+                        We also made a video tutorial for the training:
+                    </p>
 
                 </div>
+                <div id="interpretation" class="col section">
+                    <hr class="row hr-heavy"/>
+                    <div class="row">
+                        <h2>Empirical Interpretation</h2>
+                    </div>
+                    <hr class="row hr-light"/>
 
+                    <p>
+                        BASF is also interested in how the model makes the prediction (i.e. what features the network learns). However, deep learning models are hard to interpret.
+                    </p><p>
+                        One way to do this is to fit a simpler model to simulate the deep learning model, using the desired features (like size, angle and etc.). The fitted simpler model can partially explain the deep neural network. The problem is that some desired features are hard to define mathematically (for example, the angle or the shape) and some features are hard to extract (for example, accurately obtaining size of a nematode is hard). We leave this method as a future work.
+                    </p><p>
+                        Another simpler empirical way is to get an interested nematode, change its features and see whether our model changes the prediction. We did this method and the result is shown in the following images.
+                    </p>
+                    <div class="row">
+                        <div class="container-fluid" id="challenges-img">
+                            <figure class="figure text-center">
+                                <img src="images/int_org.jpg" class="figure-img img-fluid" width="300">
+                                <figcaption class="figure-caption">Nematodes</figcaption>
+                            </figure>
+
+                            <figure class="figure text-center">
+                                <img src="images/int_org.png" class="figure-img img-fluid" width="300">
+                                <figcaption class="figure-caption">Detection and classification results</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <p>
+                        We made the first image based on an interested nematode (top-left corner). We used PhotoShop to rotate the nematode, change its color, resize it and change its shape. All generated fake nematodes were then combined into a single image whose background is from a training image. The second image is generated by passing the first image into our model. We observed the following: 
+                    </p>
+                    <ol>
+                        <li>
+                            The model predicts all rotated nematodes as interested. So the model does not look at the angle of the entire nematode.
+                        </li>
+                        <li>
+                            With mild shape change, the nematodes are still predicted as interested. However, if we straighten the nematode, it will become non-interested. So the model does look at the shape of the nematode, but with mild shape change, its prediction won't change.
+                        </li>
+                        <li>
+                            Relative darkness (brightness) of nematodes matters a lot. We changed the brightness of the nematode and it becomes non-intersted. For more aggressive change (let the nematode transparent), our model will think the nematode is part of the background.
+                        </li>
+                        <li>
+                            Size matters a lot. Letting the nematode larger or smaller makes it non-interested. If the nematode is too small, our model will think it's part of the background.
+                        </li>
+                        <li>
+                            Noise does not matter. There're different debris around the rotated nematodes and the original nematodes. But the model does not change the prediction nor the prediction confidence level.
+                        </li>
+
+                    </ol>
+                    <p>
+                        We did some nematodes and the conclusions are similar. So we hope our conclusions above is generalizable for all nematode images because that means our model works as expected. In order to get insight about how exactly the model uses those features to make decisions, we need to use more sophisticated methods.
+                    </p>
+                </div>
                 <div id="conclusions" class="col section">
                     <hr class="row hr-heavy"/>
                     <div class="row">
