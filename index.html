@@ -632,10 +632,10 @@
                     <hr class="row hr-light"/>
 
                     <p>
-                        We have implemented a deep learning method, faster R-CNN, and have created a new network
-                        architecture to make R-CNN model sacle aware, for nematode classification. Our deep learning
+                        We have implemented both conventional models and a deep learning model (faster R-CNN) for the nematode detection and classification tasks. We have also created a new network
+                        architecture to make faster R-CNN model sacle aware for nematode classification. Our deep learning
                         models outperform baseline models, although our models suffer from overfitting due to the
-                        unavailability of enough training data. Also, we have delivered our models and GUI within a
+                        unavailability of enough training data. Also, we have delivered our models and GUI (with tools like CSV generator) within a
                         virtual machine to BASF.
                     </p>
                     <p>
@@ -647,7 +647,7 @@
                             can perform better with more data.
                         </li>
                         <li>
-                            Currently our models assume the input images are at a fixed scale. We should be able to
+                            Currently our models assume the input images are at a fixed scale. For different scale images, users have to use <a href="https://github.com/BASFProject-2018spring/VOC_format_builder/blob/master/image_rescale.py">our script</a> to transfer the images into the required scale. We should be able to
                             handle images at different scales in the future.
                         </li>
                         <li>
