@@ -7,7 +7,7 @@
           content="IACS Capstone Project: Deep Learning for Nematode Detection and Classification (Partner: BASF)">
     <meta name="author" content="Jiejun Lu, Hongxiang Qiu, Weidong Xu, Zeyu Zhao">
     <!-- TODO add favicon -->
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="images/favicon.png">
     <title>Deep Learning for Nematode Detection and Classification</title>
 
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -114,11 +114,13 @@
                     <hr class="row hr-light"/>
                     <div class="row">
                         <p>
+                            <img src="images/BASF.png" class="image-surround"/>
                             BASF is the only mass producer of nematodes used for slug protection, utilizing a plant in
                             Littlehampton, UK equipped with 20 vessels that provide over 190,000 L of fermentation
                             capacity
                             and
-                            can hold ~ 38 × 10<sup>12</sup> nematodes. Product quality is continually tested and maintained
+                            can hold ~ 38 × 10<sup>12</sup> nematodes. Product quality is continually tested and
+                            maintained
                             through
                             refrigeration and efficient shipping logistics to all their customers, which is a key BASF
                             skill.
@@ -152,11 +154,13 @@
                         </figure>
                         <p>
                             Nematodes have different efficacies at different stages of their life cycles. Automation of
-                            identification of whether a nematode is infective juvenile or not enables efficient quality control. This
+                            identification of whether a nematode is infective juvenile or not enables efficient quality
+                            control. This
                             project
                             applied deep learning techniques to light microscopy image data of nematode populations to
                             determine
-                            whether nematodes are at infective juvenile stage <b>(interested)</b> or not <b>(non-interested)</b>. We implemented and trained a scale-aware (SA) version of
+                            whether nematodes are at infective juvenile stage <b>(interested)</b> or not <b>(non-interested)</b>.
+                            We implemented and trained a scale-aware (SA) version of
                             faster
                             region-based convolutional neural network (faster R-CNN) model for the identification and
                             classification of nematodes from microscope images, and built a software package in a
@@ -179,19 +183,14 @@
                     <div class="row">
                         <h3>First batch of data</h3>
                         <p>
-                            BASF does not have a digital way to label the nematodes in the microscope images. Initially,
-                            we
-                            only
-                            have some sample microscope images and a slide briefing the characteristics of each life
-                            stage
-                            of
-                            nematodes. A sample image is shown below.
-                        </p> 
-                            <figure class="figure text-center figure-center">
+                            BASF didn't have a digital way to label the nematodes in the microscope images. Initially,
+                            we only had some sample microscope images and a slide briefing the characteristics of each
+                            life stage of nematodes. A sample image is shown below.
+                        </p>
+                        <figure class="figure text-center figure-center">
                             <img src="images/life_stages.png" class="figure-img img-fluid"/>
                             <figcaption class="figure-caption">Labeling in the first batch of data.</figcaption>
-                            </figure>
-                        
+                        </figure>
                     </div>
 
                     <div class="row">
@@ -199,32 +198,29 @@
 
                         <p>
                             We implemented a labeling tool and delivered it to BASF. BASF used the labeling tool we
-                            provided to
-                            generate digital labels of nematodes in microscope images.</p>
+                            provided to generate digitalized labels of nematodes in microscope images.</p>
                         <figure class="figure text-center figure-center">
                             <img src="images/labeling_tool.png" class="figure-img img-fluid"/>
                             <figcaption class="figure-caption">Screen shoot of our labeling tool.</figcaption>
                         </figure>
                         <p>
-
-                            After that, we continuously received data from BASF. Finally, we have 406 valid labeled
-                            microscopy
-                            images, with unbalanced distribution as shown below.
-                            
-                        </p> 
+                            After that, we have received several batches of data from BASF. Currently (May 2018), we
+                            have 406 valid labeled microscope images, with unbalanced distribution as shown below.
+                        </p>
                         <figure class="figure text-center figure-center">
-                            <img src="images/nematode_distribution.png" class="figure-img img-fluid" style="width:300px"/>
+                            <img src="images/nematode_distribution.png" class="figure-img img-fluid"
+                                 style="width:300px"/>
                             <figcaption class="figure-caption">Nematode distribution.</figcaption>
                         </figure>
 
-                        
+
                     </div>
 
                     <div class="row">
                         <h3>Challenges</h3>
-                        <p>We found many challenges for our data analysis and processing:</p>
+                        <p>We found many challenges during our data analysis and processing:</p>
 
-                        <div class="container-fluid" id="challenges-img">
+                        <div class="container-fluid container-image">
                             <figure class="figure text-center">
                                 <img src="images/c1.png" class="figure-img img-fluid" width="300"/>
                                 <figcaption class="figure-caption">Bad illumination.</figcaption>
@@ -261,10 +257,9 @@
                         <h3>Data augmentation</h3>
                         <p>
                             Typically, we need much more samples to train a deep neural network such as faster R-CNN.
-                            Considering we didn't have enough data, we applied aggressive data augmentation.
+                            Considering we don't have enough data, we have applied aggressive data augmentation.
                             For each original image, we generate its flipped versions and illumination adjusted
-                            versions,
-                            which grows our training set by 11 times.
+                            versions, which grows our training set by 11 times.
                         </p>
                     </div>
                 </div>
@@ -277,21 +272,16 @@
                     <hr class="row hr-light"/>
                     <div class="row">
                         <p>
-                            Conventional computer vision methods rely on the extraction of feature vectors for the
-                            classifier from images or image patches by using the feature descriptor. Histogram of
-                            oriented gradients
-                            (HOG)
-                            is a
-                            popular feature descriptor, which uses the distribution of directions of gradients as
+                            Conventional computer vision methods rely on the extraction of feature vectors from images
+                            or image patches by using the feature descriptor. Histogram of oriented gradients
+                            (HOG) is a popular feature descriptor, which uses the distribution of directions of
+                            gradients as
                             features
                             [<a href="https://ieeexplore.ieee.org/document/1467360/">1</a>].
                             Gradients of an image are large around edges and corners, which carry a lot of information
-                            about
-                            object
-                            shape, and are thus useful for classification. The feature vectors extracted by the HOG
-                            descriptor
-                            can
-                            be fed into a conventional classification algorithm, such as support vector machine (SVM).
+                            about object
+                            shape, and are thus useful for classification. The HOG descriptors can be fed into a
+                            conventional classification algorithm, such as support vector machine (SVM).
                         </p>
 
                         <figure class="figure text-center figure-center">
@@ -304,22 +294,21 @@
                             Deep learning methods usually outperform conventional methods when there are enough data.
                             Faster
                             R-CNN
-                            is the state-of-the-art deep learning algorithm for object detection [<a href="https://arxiv.org/abs/1506.01497">2</a>]. The basic idea is
+                            is the state-of-the-art deep learning algorithm for object detection [<a
+                                href="https://arxiv.org/abs/1506.01497">2</a>]. The basic idea is
                             first
-                            applying convolutional layers to get the feature maps. The region proposal network (RPN)
-                            then takes
-                            different
+                            apply convolutional layers to get the feature maps. The region proposal network (RPN)
+                            then takes different
                             sizes and positions of anchor boxes from the feature map, and learns to classify bounding
                             boxes
                             into
-                            background and foreground, as well as learning to refine the bounding boxes. The foreground boxes from
+                            background and foreground as well as to refine the bounding boxes. The foreground
+                            boxes from
                             RPN
                             goes
-                            through region of interest pooling. It will resize the feature map corresponding to the proposed bounding boxes into same
-                            shape,
-                            and
-                            the
-                            classifier will predict the class of each bounding box.
+                            through region of interest pooling. It will resize the feature map corresponding to the
+                            proposed bounding boxes into same
+                            shape, and the classifier will predict the class of each bounding box.
                         </p>
                         <figure class="figure text-center figure-center">
                             <img src='images/faster_rcnn.png' class="figure-img img-fluid">
@@ -341,12 +330,11 @@
 
                         <p>
                             From a machine learning point of view, the problem could be divided into two parts:
-                            detection and classification. Detection is to find the individual nematodes in the
-                            microscope image. Classification is to predict whether the nematodes is in interested stage.
+                            detection and classification. Detection is to find individual nematodes in the
+                            microscope image. Classification is to predict whether each nematode is in interested stage.
                         </p>
                         <p>
                             The steps of our baseline model is as follows:
-
                         </p>
 
                         <ol>
@@ -360,11 +348,9 @@
                                 nematodes.
                             </li>
                             <li>
-                                Feed the feature vectors to a simple classifier, such as support vector machine or
+                                Apply classification on the feature vectors. The classifier could be anything like
+                                support vector machine or
                                 random forest.
-                            </li>
-                            <li>
-                                Count the number of interested nematodes in each microscope image.
                             </li>
                         </ol>
 
@@ -377,18 +363,21 @@
                     <div class="row section" id="rcnn">
                         <h3>Deep Learning (R-CNN)</h3>
                         <p>
-                            Our baseline models can not handle the situation of overlapped nematodes effectively. And
-                            deep learning models usually outperform conventional methods when there are enough data. We
+                            Our baseline models can not handle situations such as overlapped nematodes. They also seem
+                            unable to capture details which could be very important in classification.
+                            Deep learning models usually outperform conventional methods when there are enough data. We
                             applied an end-to-end faster R-CNN model for nematode detection and classification.
                         </p>
 
                         <p>
 
-                            We applied a pre-trained RES-152 [<a href="https://arxiv.org/abs/1512.03385">3</a>] network to get the feature maps. The region proposal network
+                            We applied a pre-trained RES-152 [<a href="https://arxiv.org/abs/1512.03385">3</a>] network
+                            to get the feature maps. The region proposal network
                             (RPN) takes different sizes and positions of anchor boxes from the feature map, and learns
                             to classify bounding boxes into background and foreground; it also learns to refine the
                             bounding boxes. The output of RPN goes through region of interest (RoI) pooling. It resizes
-                            the feature map corresponding to the proposed bounding boxes into same shape, and the classifier will predict the class of
+                            the feature map corresponding to the proposed bounding boxes into same shape, and the
+                            classifier will predict the class of
                             each bounding box.
                         </p>
 
@@ -400,15 +389,24 @@
                     <div class="row section" id="sarcnn">
                         <h3>Adding Scale Information</h3>
                         <p>
-                            The size of bounding boxes are not explicitly considered when we do classification, since
-                            RoI layer resizes feature maps into same dimensions. This makes sense in most applications
+                            The sizes of bounding boxes are not explicitly considered when faster R-CNN does
+                            classification, since RoI layer resizes feature maps into same dimensions. This makes sense
+                            in most applications
                             because objects appear smaller when they are further away. When we do object detection in
-                            such cases, size of bounding boxes (or feature maps) shouldn’t be considered. However, in microscope images, the
-                            distance to camera is fixed. And when we classify nematodes, size matters. Nematodes that
-                            are either too small or too big are unlikely to be interested. To take the size information
-                            into account, we implemented a modified version of faster R-CNN, which we call scale-aware
-                            R-CNN (SA-R-CNN). We get the size information from RPN, which is fed into the classifier
-                            together with the results of RoI pooling.
+                            such cases, size of bounding boxes (or feature maps) shouldn’t be considered.
+                        </p>
+                        <figure class="figure text-center figure-center">
+                            <img src="images/distance_to_camera.jpg" height="1000" width="1500"/>
+                            <figcaption class="figure-caption">The cars in the image have different sizes. (source:
+                                http://greatplacesincanada.ca/gpic_places/historic-main-street/)
+                            </figcaption>
+                        </figure>
+                        <p>
+                            However, in microscope images, the distance to camera is fixed. And when we classify
+                            nematodes, size matters. Nematodes that are either too small or too big are unlikely to be
+                            interested. To take the size information into account, we implemented a modified version of
+                            faster R-CNN, which we call scale-aware R-CNN (SA-R-CNN). We get the size information from
+                            RPN, which is then passed into the classifier together with the results from RoI pooling.
                         </p>
 
                         <figure class="figure text-center figure-center">
@@ -491,6 +489,7 @@
                             <td><b>0.75</b></td>
                         </tr>
                     </table>
+
                     <p>
                         From the results, we see our SA-R-CNN is better than the default faster R-CNN and both of them
                         are
@@ -501,7 +500,33 @@
                         predictions are non-interested, we think it’s not an issue (dead nematodes are not interested
                         anyway).
                     </p>
+
+
+                    <figure class="figure w-100 text-center">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Predicted as Non-interested</th>
+                                <th>Predicted as Interested</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <th>Labeled as Non-interested</th>
+                                <td>17</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <th>Labeled as Interested</th>
+                                <td>20</td>
+                                <td>47</td>
+                            </tr>
+                        </table>
+                        <figcaption class="figure-caption">Classification confusion matrix for SA-R-CNN</figcaption>
+                    </figure>
+
                     <p>
+                        From the confusion matrix we can see we have few false negative but many false positives.
                         As discussed, we think our models are not trained enough due to the lack of training data. With
                         more
                         data, we believe our models can do better.
@@ -516,7 +541,8 @@
                     <hr class="row hr-light"/>
 
                     <p>
-                        We built a software that automatically outputs the predictions and generates a CSV for counts of interested/non-interested nematodes in each image.
+                        We built a software that automatically outputs the predictions and generates a CSV for counts of
+                        interested/non-interested nematodes in each image.
                     </p>
 
                     <figure class="figure-center figure">
@@ -554,22 +580,32 @@
                         <a href="https://drive.google.com/file/d/1-VdYoSuK8tQ_kuPHHLNH-PFjvQa4caqY/view?usp=sharing">https://drive.google.com/file/d/1-VdYoSuK8tQ_kuPHHLNH-PFjvQa4caqY/view?usp=sharing</a>
                     </p>
                     <p>
-                        The video tutorial of our software is here: 
+                        The video tutorial of our software is here:
                     </p>
-                    <iframe style="display:block;margin:0 auto;" width="560" height="315" src="https://www.youtube.com/embed/2c5iCQSVKvE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe class="video"
+                            src="https://www.youtube.com/embed/2c5iCQSVKvE?rel=0"
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <p>
-                        In case BASF wants to retrain the model in the future with more available data, we wrote a documented <a href="https://github.com/BASFProject-2018spring/ABOUT">training pipeline</a>.
-                    </p><p>
-                        All code can be found in our <a href="https://github.com/BASFProject-2018spring">project organization</a> (public)
+                        In case BASF wants to retrain the model in the future with more available data, we wrote a
+                        documented <a href="https://github.com/BASFProject-2018spring/ABOUT">training pipeline</a>.
+                    </p>
+                    <p>
+                        All code can be found in our <a href="https://github.com/BASFProject-2018spring">project
+                        organization</a> (public)
                     </p>
                     <p>
                         We also made a video tutorial for the training:
                     </p>
-                    <iframe style="display:block;margin:0 auto;" width="560" height="315" src="https://www.youtube.com/embed/mN6CnejkdtE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe class="video"
+                            src="https://www.youtube.com/embed/mN6CnejkdtE?rel=0"
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-                    <p>In the latest meeting, BASF told us they would like to add more classes of nematodes in the future (such as dead nematode class). So we include the places to change for our model working for more classes. This documentation is also in our training pipeline.</p>
+                    <p>In the latest meeting, BASF told us they would like to add more classes of nematodes in the
+                        future (such as dead nematode class). So we have included information on places to change for
+                        our model working for more classes. This documentation is also in our training pipeline.</p>
 
-                    <p>Once BASF labels new data (with more classes), they can make changes to our code accordingly and train a new model.</p>
+                    <p>Once BASF have new data labled (with more classes), they could make changes to our code
+                        accordingly and train a new model.</p>
 
                 </div>
                 <div id="interpretation" class="col section">
@@ -580,14 +616,23 @@
                     <hr class="row hr-light"/>
 
                     <p>
-                        BASF is also interested in how the model makes the prediction (i.e. what features the network learns). However, deep learning models are hard to interpret.
-                    </p><p>
-                        One way to do this is to fit a simpler model to simulate the deep learning model, using the desired features (like size, angle and etc.). The fitted simpler model can partially explain the deep neural network. The problem is that some desired features are hard to define mathematically (for example, the angle or the shape) and some features are hard to extract (for example, accurately obtaining size of a nematode is hard). We leave this method as a future work.
-                    </p><p>
-                        Another simpler empirical way is to get an interested nematode, change its features and see whether our model changes the prediction. We did this method and the result is shown in the following images.
+                        BASF is also interested in how the model makes the prediction (i.e. what features the network
+                        learns). However, deep learning models are hard to interpret.
+                    </p>
+                    <p>
+                        One way to do this is to fit a simpler model to simulate the deep learning model, using the
+                        desired features (like size, angle and etc.). The fitted simpler model can partially explain the
+                        deep neural network. The problem is that some desired features are hard to define mathematically
+                        (for example, the angle or the shape) and some features are hard to extract (for example,
+                        accurately obtaining size of a nematode is hard). We leave this method as a future work.
+                    </p>
+                    <p>
+                        Another simpler empirical way is to get an interested nematode, change its features and see
+                        whether our model changes the prediction. We did this method and the result is shown in the
+                        following images.
                     </p>
                     <div class="row">
-                        <div class="container-fluid" id="challenges-img">
+                        <div class="container-fluid container-image">
                             <figure class="figure text-center">
                                 <img src="images/int_org.jpg" class="figure-img img-fluid" width="300">
                                 <figcaption class="figure-caption">Nematodes</figcaption>
@@ -600,28 +645,42 @@
                         </div>
                     </div>
                     <p>
-                        We made the first image based on an interested nematode (top-left corner). We used PhotoShop to rotate the nematode, change its color, resize it and change its shape. All generated fake nematodes were then combined into a single image whose background is from a training image. The second image is generated by passing the first image into our model. We observed the following: 
+                        We made the first image based on an interested nematode (top-left corner). We used PhotoShop to
+                        rotate the nematode, change its color, resize it and change its shape. All generated fake
+                        nematodes were then combined into a single image whose background is from a training image. The
+                        second image is generated by passing the first image into our model. We observed the following:
                     </p>
                     <ol>
                         <li>
-                            The model predicts all rotated nematodes as interested. So the model does not look at the angle of the entire nematode.
+                            The model predicts all rotated nematodes as interested. So rotation doesn't affect the
+                            model.
                         </li>
                         <li>
-                            With mild shape change, the nematodes are still predicted as interested. However, if we straighten the nematode, it will become non-interested. So the model does look at the shape of the nematode, but with mild shape change, its prediction won't change.
+                            With mild shape change, the nematodes are still predicted as interested. However, if we
+                            straighten the nematode, it will become non-interested. So the model does look at the shape
+                            of the nematode, but with mild shape change, its prediction won't change.
                         </li>
                         <li>
-                            Relative darkness (brightness) of nematodes matters a lot. We changed the brightness of the nematode and it becomes non-intersted. For more aggressive change (let the nematode transparent), our model will think the nematode is part of the background.
+                            Relative darkness (brightness) of nematodes matters a lot. We changed the brightness of the
+                            nematode and it becomes non-intersted. For more aggressive change (let the nematode
+                            transparent), our model will think the nematode is part of the background.
                         </li>
                         <li>
-                            Size matters a lot. Letting the nematode larger or smaller makes it non-interested. If the nematode is too small, our model will think it's part of the background.
+                            Size matters a lot. Letting the nematode larger or smaller makes it non-interested. If the
+                            nematode is too small, our model will think it's part of the background.
                         </li>
                         <li>
-                            Noise does not matter. There're different debris around the rotated nematodes and the original nematodes. But the model does not change the prediction nor the prediction confidence level.
+                            Noise does not matter. There're different debris around the rotated nematodes and the
+                            original nematodes. But the model does not change the prediction nor the prediction
+                            confidence level.
                         </li>
 
                     </ol>
                     <p>
-                        We did some nematodes and the conclusions are similar. So we hope our conclusions above is generalizable for all nematode images because that means our model works as expected. In order to get insight about how exactly the model uses those features to make decisions, we need to use more sophisticated methods.
+                        We conducted such experiment on some nematodes and the conclusions are similar. So we hope our
+                        conclusions above is generalizable for all nematode images because that means our model works as
+                        expected. In order to get insight about how exactly the model uses those features to make
+                        decisions, we need to use more sophisticated methods.
                     </p>
                 </div>
                 <div id="conclusions" class="col section">
@@ -632,11 +691,13 @@
                     <hr class="row hr-light"/>
 
                     <p>
-                        We have implemented both conventional models and a deep learning model (faster R-CNN) for the nematode detection and classification tasks. We have also created a new network
-                        architecture to make faster R-CNN model sacle aware for nematode classification. Our deep learning
+                        We have implemented both conventional models and deep learning models for the
+                        nematode detection and classification tasks. We have created a new network
+                        architecture to make faster R-CNN model scale aware for nematode classification. Our deep
+                        learning
                         models outperform baseline models, although our models suffer from overfitting due to the
-                        unavailability of enough training data. Also, we have delivered our models and GUI (with tools like CSV generator) within a
-                        virtual machine to BASF.
+                        unavailability of enough training data. Also, we have delivered our models and GUI (with tools
+                        like CSV generator) within a virtual machine to BASF.
                     </p>
                     <p>
                         Our models can be improved in the following aspects:
@@ -647,7 +708,10 @@
                             can perform better with more data.
                         </li>
                         <li>
-                            Currently our models assume the input images are at a fixed scale. For different scale images, users have to use <a href="https://github.com/BASFProject-2018spring/VOC_format_builder/blob/master/image_rescale.py">our script</a> to transfer the images into the required scale. We should be able to
+                            Currently our models assume the input images are at a fixed scale. For different scale
+                            images, users have to use <a
+                                href="https://github.com/BASFProject-2018spring/VOC_format_builder/blob/master/image_rescale.py">our
+                            script</a> to transfer the images into the required scale. We should be able to
                             handle images at different scales in the future.
                         </li>
                         <li>

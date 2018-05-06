@@ -1,3 +1,7 @@
+.image-surround {
+  float: right;
+  max-width: 40%;
+}
 * {
   border-radius: 0 !important;
 }
@@ -188,15 +192,23 @@ figure {
   max-width: 80% !important;
   height: auto;
 }
-#challenges-img {
+.container-image {
   text-align: center;
 }
-#challenges-img figure img {
+.container-image figure img {
   height: 15em;
   width: auto;
 }
 .section {
   padding-top: 8em;
   margin-top: -8em;
+}
+.video {
+  display: block;
+  margin: 0 auto 1em auto;
+  width: 560px;
+  height: 315px;
+  border: 0;
+  max-width: 100%;
 }
 /*# sourceMappingURL=site.css.map */

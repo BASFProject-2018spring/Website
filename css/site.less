@@ -28,6 +28,13 @@
 
 @breakpoint: 767px;
 
+.image-surround {
+  float: right;
+  max-width: 40%;
+}
+
+;
+
 * {
   border-radius: 0 !important;
 }
@@ -148,7 +155,7 @@ body {
     height: 100%;
     max-height: unset !important;
 
-    >ul {
+    > ul {
       height: 40em;
     }
 
@@ -252,7 +259,7 @@ figure {
   }
 }
 
-#challenges-img {
+.container-image {
   text-align: center;
 
   figure img {
@@ -264,4 +271,13 @@ figure {
 .section {
   padding-top: @topbar-height*2;
   margin-top: -@topbar-height*2;
+}
+
+.video {
+  display: block;
+  margin: 0 auto 1em auto;
+  width: 560px;
+  height: 315px;
+  border: 0;
+  max-width: 100%;
 }
