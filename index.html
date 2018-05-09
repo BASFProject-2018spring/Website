@@ -161,7 +161,7 @@
                             faster
                             region-based convolutional neural network (faster R-CNN) model for the identification and
                             classification of nematodes from microscope images, and built a software package in a
-                            virtual machine image for the automation of nematode classification task.
+                            virtual machine image for the automation of nematode classification task. The expected input and output is shown in the figure below.
                         </p>
                         <figure class="figure">
                             <img src="images/input_output.png" class="figure-img img-fluid"/>
@@ -194,7 +194,7 @@
 
                         <p>
                             We implemented a labeling tool and delivered it to BASF. BASF used the labeling tool we
-                            provided to generate digitalized labels of nematodes in microscope images.</p>
+                            provided to generate digitalized labels of nematodes in microscope images. A screen shot of our labeling tool is shown below.</p>
                         <figure class="figure text-center figure-center">
                             <img src="images/labeling_tool.png" class="figure-img img-fluid"/>
                             <figcaption class="figure-caption">Screen shoot of our labeling tool.</figcaption>
@@ -214,7 +214,7 @@
 
                     <div class="row">
                         <h3>Challenges</h3>
-                        <p>We found many challenges during our data analysis and processing:</p>
+                        <p>We found many challenges during our data analysis and processing, including bad illumination, noise, overlapping nematodes, nematodes with weired shape, and mislabeled data (in the example image below, all nematodes were labeled as "interested"; however, it is impossible in this case), as shown below:</p>
 
                         <div class="container-fluid container-image">
                             <figure class="figure text-center">
@@ -240,10 +240,7 @@
                             <figure class="figure text-center">
                                 <img src="images/c5.png" class="figure-img img-fluid"/>
                                 <figcaption class="figure-caption">
-                                    Mislabeled data <br>(All nematodes were labeled as "interested" in this image;
-                                    however,
-                                    it
-                                    couldn't be true in this case).
+                                    Mislabeled data.
                                 </figcaption>
                             </figure>
                         </div>
@@ -277,7 +274,7 @@
                             Gradients of an image are large around edges and corners, which carry a lot of information
                             about object
                             shape, and are thus useful for classification. The HOG descriptors can be fed into a
-                            conventional classification algorithm, such as support vector machine (SVM).
+                            conventional classification algorithm, such as support vector machine (SVM). An example of HOG feature descriptor is shown below.
                         </p>
 
                         <figure class="figure text-center figure-center">
@@ -304,7 +301,7 @@
                             goes
                             through region of interest pooling. It will resize the feature map corresponding to the
                             proposed bounding boxes into same
-                            shape, and the classifier will predict the class of each bounding box.
+                            shape, and the classifier will predict the class of each bounding box. The architecture scheme of faster R-CNN is shown below.
                         </p>
                         <figure class="figure text-center figure-center">
                             <img src='images/faster_rcnn.png' class="figure-img img-fluid">
