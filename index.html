@@ -346,7 +346,9 @@
                                 random forest.
                             </li>
                         </ol>
-
+                        <p>
+                            The scheme of baseline models pipeline is shown below.
+                        </p>
                         <figure class="figure text-center figure-center">
                             <img src='images/baseline.png' class="figure-img img-fluid">
                             <figcaption class="figure-caption">Baseline models pipeline.</figcaption>
@@ -371,7 +373,7 @@
                             bounding boxes. The output of RPN goes through region of interest (RoI) pooling. It resizes
                             the feature map corresponding to the proposed bounding boxes into same shape, and the
                             classifier will predict the class of
-                            each bounding box.
+                            each bounding box. The architecture scheme of the faster R-CNN model is shown below.
                         </p>
 
                         <figure class="figure text-center figure-center">
@@ -385,7 +387,7 @@
                             The sizes of bounding boxes are not explicitly considered when faster R-CNN does
                             classification, since RoI layer resizes feature maps into same dimensions. This makes sense
                             in most applications
-                            because objects appear smaller when they are further away. When we do object detection in
+                            because objects appear smaller when they are further away. For example, the cars have different sizes in the example image below. When we do object detection in
                             such cases, size of bounding boxes (or feature maps) shouldn’t be considered.
                         </p>
                         <figure class="figure text-center figure-center">
@@ -399,7 +401,7 @@
                             nematodes, size matters. Nematodes that are either too small or too big are unlikely to be
                             interested. To take the size information into account, we implemented a modified version of
                             faster R-CNN, which we call scale-aware R-CNN (SA-R-CNN). We get the size information from
-                            RPN, which is then passed into the classifier together with the results from RoI pooling.
+                            RPN, which is then passed into the classifier together with the results from RoI pooling. The architecture scheme of SA-R-CNN is shown below.
                         </p>
 
                         <figure class="figure text-center figure-center">
@@ -535,7 +537,7 @@
 
                     <p>
                         We built a software that automatically outputs the predictions and generates a CSV for counts of
-                        interested/non-interested nematodes in each image.
+                        interested/non-interested nematodes in each image. An example output image by our software is shown below.
                     </p>
 
                     <figure class="figure-center figure">
@@ -545,7 +547,7 @@
                     </figure>
 
                     <p>
-                        We delivered a virtual machine with all models and GUI to BASF.
+                        We delivered a virtual machine with all models and GUI to BASF (screenshots are shown below).
                     </p>
 
                     <br>
@@ -621,7 +623,7 @@
                     </p>
                     <p>
                         Another simpler empirical way is to get an interested nematode, change its features and see
-                        whether our model changes the prediction. We did this method and the result is shown in the
+                        whether our model changes the prediction. We tried this method and the result is shown in the
                         following images.
                     </p>
                     <div class="row">
