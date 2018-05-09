@@ -105,8 +105,9 @@ body {
   width: auto;
 }
 #nav #nav-content {
+  overflow-x: hidden;
+  overflow-y: auto;
   height: 100%;
-  max-height: unset !important;
 }
 #nav #nav-content > ul {
   height: 40em;
